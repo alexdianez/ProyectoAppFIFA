@@ -1,0 +1,53 @@
+<body style="background-image:('https://news.mondoiberica.com.es/wp-content/uploads/2019/03/deifontes3.jpg');">
+<ion-header >
+  <ion-toolbar>
+    <ion-title style="text-align: center;">
+     <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">App Jugadores del FIFA</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="body" padding>
+  <ion-item>
+    <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre:</ion-label>
+    <ion-input [(ngModel)]="editarJug.Nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Apellidos:</ion-label>
+    <ion-input [(ngModel)]="editarJug.Apellidos"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><ion-icon ios="ios-stats" md="md-stats"></ion-icon>Media:</ion-label>
+    <ion-input [(ngModel)]="editarJug.Media"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><ion-icon ios="ios-medal" md="md-medal"></ion-icon>Posición:</ion-label>
+    <ion-input [(ngModel)]="editarJug.Posicion"></ion-input>
+  </ion-item> 
+  <ion-item>
+    <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Altura:</ion-label>
+    <ion-input [(ngModel)]="editarJug.Altura"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>Nacimiento:</ion-label>
+    <ion-datetime displayFormat="DD MM YY" placeholder="Seleccionar fecha..." [(ngModel)]="editarJug.FNac"></ion-datetime>
+  </ion-item> 
+  <ion-item>
+    <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Foto:</ion-label>
+    <ion-input [(ngModel)]="editarJug.Foto" type="file" [id]="pic"></ion-input>
+  </ion-item>
+  <ion-button (click)="clicBotonInsertar()">Añadir jugador</ion-button>
+  <ion-button (click)="clicBotonBorrar()">Borrar jugador</ion-button>
+  <ion-button (click)="clicBotonModificar()">Modificar jugador.</ion-button>
+  <h1 style="text-align: center; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;"><b>LISTA DE JUGADORES</b></h1>
+  <ion-list>
+    <ion-item *ngFor="let documentJug of arrayColeccionJug" (click)="selecJug(documentJug)">
+      <ion-grid>
+        <ion-row>
+          <h1><b>{{documentJug.data.Foto}} Nombre: {{documentJug.data.Nombre}}, {{documentJug.data.Apellidos}}</b></h1>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
+</body>
