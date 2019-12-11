@@ -1,4 +1,5 @@
 export interface Datos {
+    
     Imagen:string;
     Nombre: string;
     Apellidos: string;
