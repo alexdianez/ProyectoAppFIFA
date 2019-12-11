@@ -1,6 +1,7 @@
+import { Url } from 'url';
+
 export interface Datos {
-    
-    Imagen:string;
+    Imagen:Url;
     Nombre: string;
     Apellidos: string;
     Media: number;
