@@ -1,0 +1,113 @@
+@media (max-width: 720px) {
+  
+    ion-item{
+    --ion-background-color: rgb(131, 131, 131);
+    text-align: center;
+    color: rgb(255, 255, 255);
+    }
+    ion-content {
+    --ion-background-color: rgb(138, 228, 198);
+    }
+    ion-card-content{
+      background-color: rgb(0, 75, 105);
+      color: rgb(255, 255, 255);
+    }
+    #barra{
+      font-size: 15px;
+    }#titulo{
+      --ion-font-size: 25px;
+      background-color: rgb(138, 228, 198);
+    }
+    
+    ion-title {
+        --ion-background-color: rgb(255, 255, 255);
+        font-family: 'Bahnschrift';
+        --ion-font-size: 20px;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        }
+  }
+  @media (min-width: 720px)and(max-width: 1080px) {
+    #footer{
+      --ion-background-color: rgb(182, 182, 182);
+    }
+    #Persona{
+      color:white;
+      --ion-background-color: rgb(4, 43, 41);
+    }
+    
+    ion-card-content{
+      color: rgb(0, 0, 0);
+    }
+    ion-title {
+        background-color: rgb(4, 43, 41);
+        font-family: 'Courier New', Courier, monospace;
+        --ion-font-size: 20px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        }
+  }
+@media (min-width: 1080px)  {
+  ion-header{
+    --ion-background-color: rgb(187, 221, 238);
+  }
+
+    ion-item{
+      --ion-background-color: rgb(40, 111, 146);
+      color: rgb(255, 255, 255);
+    }
+    ion-content {
+    --ion-background-color: rgb(141, 219, 255);
+    }
+    ion-card-content{
+      font-family: Verdana;
+      background-color: rgb(255, 255, 255);
+    }
+    ion-title {
+      font-family: 'Bahnschrift';
+        size: 90px;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        }
+    ion-button {
+             font-family: 'Bahnschrift';
+             size: 90px;
+             --ion-color: rgb(0, 0, 0);
+             text-align: center;
+     }
+  }
+@media (orientation: landscape){
+  #main{
+    font-size: 25px;
+  }
+  #vistaHor{
+
+    visibility: visible;
+  }
+  #vistaVert{
+    visibility: hidden;
+  }
+  #barra{
+    size: 15px;
+    visibility: visible;
+  }
+}
+@media (orientation: portrait){
+  
+  #titulo{
+    font-size: 25px;
+  }
+  #vistaHor{
+    visibility: hidden;
+  }
+  #vistaVert{
+    visibility: visible;
+  }
+}
+h2{
+  font-style:italic;
+}
+h3{
+  font-style:oblique;
+}
+

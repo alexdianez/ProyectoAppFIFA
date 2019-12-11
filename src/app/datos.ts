@@ -11,9 +11,9 @@ export interface Datos {
     Regate: number;
     Tiro: number;
     Pase: number;
-    Físico: number;
+    Fisico: number;
     Defensa: number;
 
-    PMala: string;
-    Skills: string;
+    PMala: number;
+    Skills: number;
 }

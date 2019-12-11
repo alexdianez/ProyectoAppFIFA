@@ -1,5 +1,7 @@
 {
   "name": "appJugadores",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

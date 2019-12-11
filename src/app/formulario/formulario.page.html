@@ -1,0 +1,123 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+                <ion-back-button defaultHref='home'></ion-back-button>
+                <div *ngIf = "nuevo == false">
+                    <ion-title><h1 style=" font-family: Bahnschrift;"><b>Formulario Editar</b></h1></ion-title>
+                </div>
+                <div *ngIf = "nuevo == true">
+                    <ion-title><h1 style="font-family: Bahnschrift;"><b>Formulario Nuevo</b></h1></ion-title>
+                </div>
+          </ion-buttons>
+          
+        </ion-toolbar>
+      </ion-header>
+    <ion-content id="body" padding>
+       
+      <ion-col >
+          <ion-title style="text-align: center;">
+             <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Datos Generales</h1>
+            </ion-title>
+             <ion-item >
+               <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Nombre"></ion-input>
+             </ion-item>
+             <ion-item>
+               <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Apellidos:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Apellidos"></ion-input>
+             </ion-item>
+             <ion-item>
+               <ion-label><ion-icon ios="ios-stats" md="md-stats"></ion-icon>Media:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Media"></ion-input>
+             </ion-item>
+             <ion-item>
+               <ion-label><ion-icon ios="ios-medal" md="md-medal"></ion-icon>Posición:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Posicion"></ion-input>
+             </ion-item> 
+             <ion-item>
+               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Altura:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Altura"></ion-input>
+             </ion-item>
+             <ion-item>
+               <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>Nacimiento:</ion-label>
+               <ion-datetime displayFormat="DD MM YY" placeholder="Seleccionar fecha..." [(ngModel)]="docJug.data.FNac"></ion-datetime>
+             </ion-item> 
+             <ion-title style="text-align: center;">
+                <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Stats Específicas</h1>
+               </ion-title>
+             <ion-item>
+               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>  Velocidad:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Velocidad"></ion-input>
+             </ion-item>
+             <ion-item>
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Regate:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Regate" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Tiro:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Tiro"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Pase:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Pase" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Físico:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Fisico" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Defensa:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Defensa"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Pierna Mala:</ion-label>
+              <ion-select [(ngModel)]="docJug.data.PMala" >
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon ios="ios-star" md="md-star"></ion-icon>Skills:</ion-label>
+              <ion-select [(ngModel)]="docJug.data.Skills" >
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+              </ion-select>
+            </ion-item>
+         </ion-col>
+  </ion-content>
+
+  <ion-footer>
+      <ion-toolbar>
+        <div *ngIf = "nuevo == false">
+        <ion-buttons>
+          <ion-button style="width: 100%;"(click)="navigateToInicio()">
+            <ion-icon slot="icon-only" name="home"></ion-icon>
+          </ion-button>
+            <ion-button style="width: 100%;" (click)="alertaBorrar()">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+              <ion-button style="width: 100%;" (click)="alertaModificar()">
+                  <ion-icon ios="ios-create" md="md-create"></ion-icon>
+              </ion-button>
+        </ion-buttons>
+        </div>
+        <div *ngIf = "nuevo == true">
+            <ion-buttons>
+              <ion-button style="width: 100%;"(click)="navigateToInicio()">
+                <ion-icon slot="icon-only" name="home"></ion-icon>
+              </ion-button>
+              <ion-button style="width: 100%;" (click)="clicBotonInsertar(navigateToInicio())">
+                <ion-icon slot="icon-only" name="save"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-app>
