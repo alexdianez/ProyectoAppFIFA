@@ -19,6 +19,10 @@
           <ion-title style="text-align: center;">
              <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Datos Generales</h1>
             </ion-title>
+            <ion-item >
+              <ion-label><ion-icon ios="ios-camera" md="md-camera"></ion-icon>URL de la imagen:</ion-label>
+              <ion-input type="url" [(ngModel)]="docJug.data.Imagen"></ion-input>
+            </ion-item>
              <ion-item >
                <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre:</ion-label>
                <ion-input [(ngModel)]="docJug.data.Nombre"></ion-input>

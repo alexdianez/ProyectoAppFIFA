@@ -17,9 +17,11 @@
     <ion-item *ngFor="let documentJug of arrayColeccionJug"  (click)="navigateToFormulario(documentJug)">
       <ion-grid>
         <ion-row>
-          <h1 style="text-align: center; font-family: Bahnschrift;"><b> <ion-icon ios="ios-person" md="md-person"></ion-icon>Nombre: {{documentJug.data.Nombre}}, {{documentJug.data.Apellidos}}</b></h1>
+          <h1 style="text-align: center; font-family: Bahnschrift;"><b> <ion-icon ios="ios-person" md="md-person"></ion-icon><img width=25% [src]="documentJug.data.Imagen"> Nombre: {{documentJug.data.Nombre}}, {{documentJug.data.Apellidos}}             </b></h1>
         </ion-row>
-        
+        <ion-col>
+        <h1 style="text-align: right; font-family: Bahnschrift;"><b>{{documentJug.data.Media}} </b></h1>
+        </ion-col>
       </ion-grid>
     </ion-item>
   </ion-list>
