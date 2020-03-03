@@ -7,6 +7,9 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Component({
   
   selector: 'app-formulario',
@@ -14,15 +17,22 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
   styleUrls: ['./formulario.page.scss'],
 })
 export class FormularioPage implements OnInit {
+    isLogged: boolean;
     nuevo = false;
+    private  apiUrl :string = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=10";
     docJug: any = {
       id : null,
-      data: {} as Datos
+      data: {} as Datos,
     };
    
   editarJug: Datos;  
   idJugSelec = null;
+  index = null;
   constructor(
+    public loadingCtrl: LoadingController,
+    private authService: AuthService,
+    public afAuth: AngularFireAuth,
+    private socialSharing: SocialSharing,
     private firestoreService: FirestoreService,
     private router:Router, 
     private activatedRoute: ActivatedRoute, 
@@ -33,7 +43,23 @@ export class FormularioPage implements OnInit {
     // Crear una tarea vacía
     this.editarJug = {} as Datos;
   } 
-  
+  compilemsg():string{
+    var msg = this.docJug.data.URL;
+    return msg;
+  }
+  regularShare(){
+    var msg = this.compilemsg();
+    this.socialSharing.share(msg, null, null, null);
+  }
+
+  ionViewDidEnter() {
+    this.isLogged = false;
+    this.afAuth.user.subscribe(user => {
+      if(user){
+        this.isLogged = true;
+      }
+    })
+  }
   ngOnInit() {
     
     this.idJugSelec = this.activatedRoute.snapshot.paramMap.get("id");
@@ -175,6 +201,7 @@ export class FormularioPage implements OnInit {
                       .then(downloadURL => {
                         // En la variable downloadURL se tiene la dirección de descarga de la imagen
                         console.log("downloadURL:" + downloadURL);
+                        this.docJug.data.Imagen=downloadURL;
                         // Mostrar el mensaje de finalización de la subida
                         toast.present();
                         // Ocultar mensaje de espera

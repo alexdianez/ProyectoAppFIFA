@@ -12,17 +12,23 @@
 <ion-content id="body" padding>
    <ion-header >
        <ion-toolbar>
-           <ion-input [(ngModel)]="gen" placeholder="Buscar..."><ion-icon name="search"></ion-icon></ion-input>
+           <ion-searchbar [(ngModel)]="gen"  
+           [showCancelButton]="miStringDeCancell"
+           (ionInput)="getItems($event)"
+           (ionCancel)=null 
+           placeholder="Buscar..."></ion-searchbar>
          </ion-toolbar>
     </ion-header>
- <ion-list *ngIf="gen!=null && gen!='' ">
-   <ion-item *ngFor="let documentJug of docJug"  (click)="navigateToFormulario(documentJug)">
-     <ion-grid *ngIf="documentJug.data.Nombre==gen || documentJug.data.Apellidos==gen || documentJug.data.Media==gen">
+ <ion-list>
+   <div *ngIf="gen!=null && gen!='' ">
+   <ion-item *ngFor="let documentJug of items"  (click)="navigateToFormulario(documentJug)">
+     <ion-grid>
        <ion-row>
          <h1 style="text-align: center; font-family: Bahnschrift;"><b><ion-icon ios="ios-person" md="md-person"></ion-icon> Nombre: {{documentJug.data.Nombre}}, {{documentJug.data.Apellidos}}</b></h1>
        </ion-row>
      </ion-grid>
    </ion-item>
+   </div>
  </ion-list>
  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
    <ion-fab-button (click)="navigateToFormularioNew()" color="light">  

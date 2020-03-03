@@ -1,6 +1,7 @@
 import { Url } from 'url';
 
 export interface Datos {
+    URL:Url;
     Imagen:Url;
     Nombre: string;
     Apellidos: string;

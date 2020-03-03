@@ -4,77 +4,194 @@
           <ion-buttons slot="start">
                 <ion-back-button defaultHref='home'></ion-back-button>
                 <div *ngIf = "nuevo == false">
-                    <ion-title><h1 style=" font-family: Bahnschrift;"><b>Formulario Editar</b></h1></ion-title>
+                    <ion-title><h1 style=" font-family: Bahnschrift;"><b>Datos</b></h1></ion-title>
                 </div>
                 <div *ngIf = "nuevo == true">
-                    <ion-title><h1 style="font-family: Bahnschrift;"><b>Formulario Nuevo</b></h1></ion-title>
+                    <ion-title><h1 style="font-family: Bahnschrift;"><b>Añadir jugador</b></h1></ion-title>
                 </div>
           </ion-buttons>
           
         </ion-toolbar>
       </ion-header>
-    <ion-content id="body" padding>
+    <ion-content  id="body" padding  >
        
-      <ion-col>
-          <ion-title style="text-align: center;">
+      <ion-col *ngIf = "isLogged == false" >
+          <ion-title>
              <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Datos Generales</h1>
             </ion-title>
             <ion-item >
-              <ion-label><ion-avatar slot="end"><img width=20% [src]="docJug.data.Imagen"></ion-avatar> URL de la imagen:</ion-label>
-              <ion-button (click)="uploadImagePicker()">Importar...</ion-button>
+              <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Url del perfil:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.URL" value="Disabled" disabled></ion-input>
             </ion-item>
-             <ion-item >
+            <ion-item style="text-align:left;">
+              <ion-label><ion-avatar slot="end"><img width=20% [src]="docJug.data.Imagen"></ion-avatar>Imagen:</ion-label>
+              <ion-button (click)="uploadImagePicker()" value="Disabled" disabled>Importar...</ion-button>
+              <ion-button (click)="uploadImagePicker()" value="Disabled" disabled>Borrar...</ion-button>
+            </ion-item>
+             <ion-item style="text-align:right;">
                <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre:</ion-label>
-               <ion-input [(ngModel)]="docJug.data.Nombre"></ion-input>
+               <ion-input [(ngModel)]="docJug.data.Nombre" value="Disabled" disabled></ion-input>
              </ion-item>
-             <ion-item>
+             <ion-item style="text-align:right;">
                <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Apellidos:</ion-label>
-               <ion-input [(ngModel)]="docJug.data.Apellidos"></ion-input>
+               <ion-input [(ngModel)]="docJug.data.Apellidos" value="Disabled" disabled></ion-input>
              </ion-item>
-             <ion-item>
+             <ion-item style="text-align:right;">
                <ion-label><ion-icon ios="ios-stats" md="md-stats"></ion-icon>Media:</ion-label>
-               <ion-input [(ngModel)]="docJug.data.Media"></ion-input>
+               <ion-input [(ngModel)]="docJug.data.Media" type="number" min="40" max="99" value="Disabled" disabled></ion-input>
              </ion-item>
-             <ion-item>
-               <ion-label><ion-icon ios="ios-medal" md="md-medal"></ion-icon>Posición:</ion-label>
-               <ion-input [(ngModel)]="docJug.data.Posicion"></ion-input>
-             </ion-item> 
-             <ion-item>
+             <ion-item style="text-align:left;">
+              <ion-label><ion-icon ios="ios-medal" md="md-medal"></ion-icon>Posición:</ion-label>
+              <ion-select [(ngModel)]="docJug.data.Posicion" value="Disabled" disabled>
+                <ion-select-option value="POR">POR</ion-select-option>
+                <ion-select-option value="DFC">DFC</ion-select-option>
+                <ion-select-option value="LI">LI</ion-select-option>
+                <ion-select-option value="LD">LD</ion-select-option>
+                <ion-select-option value="MCD">MCD</ion-select-option>
+                <ion-select-option value="MCO">MCO</ion-select-option>
+                <ion-select-option value="MD">MD</ion-select-option>
+                <ion-select-option value="MI">MI</ion-select-option>
+                <ion-select-option value="SD">SD</ion-select-option>
+                <ion-select-option value="DC">DC</ion-select-option>
+                <ion-select-option value="EI">EI</ion-select-option>
+                <ion-select-option value="ED">ED</ion-select-option>
+              </ion-select>
+            </ion-item>
+             <ion-item style="text-align:right;">
                <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Altura:</ion-label>
-               <ion-input [(ngModel)]="docJug.data.Altura"></ion-input>
+               <ion-input [(ngModel)]="docJug.data.Altura" type="number" value="Disabled" disabled></ion-input>
              </ion-item>
-             <ion-item>
+             <ion-item style="text-align:left;">
                <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>Nacimiento:</ion-label>
-               <ion-datetime displayFormat="DD MM YY" placeholder="Seleccionar fecha..." [(ngModel)]="docJug.data.FNac"></ion-datetime>
+               <ion-datetime displayFormat="DD MM YY" placeholder="Seleccionar fecha..." [(ngModel)]="docJug.data.FNac" value="Disabled" disabled></ion-datetime>
              </ion-item> 
              <ion-title style="text-align: center;">
                 <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Stats Específicas</h1>
                </ion-title>
-             <ion-item>
+             <ion-item style="text-align:right;">
                <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>  Velocidad:</ion-label>
-               <ion-input [(ngModel)]="docJug.data.Velocidad"></ion-input>
+               <ion-input [(ngModel)]="docJug.data.Velocidad" type="number" value="Disabled" disabled></ion-input>
              </ion-item>
-             <ion-item>
+             <ion-item style="text-align:right;">
               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Regate:</ion-label>
-              <ion-input [(ngModel)]="docJug.data.Regate" ></ion-input>
+              <ion-input [(ngModel)]="docJug.data.Regate" type="number" value="Disabled" disabled></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item style="text-align:right;">
               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Tiro:</ion-label>
-              <ion-input [(ngModel)]="docJug.data.Tiro"></ion-input>
+              <ion-input [(ngModel)]="docJug.data.Tiro" type="number" value="Disabled" disabled></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item style="text-align:right;">
               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Pase:</ion-label>
-              <ion-input [(ngModel)]="docJug.data.Pase" ></ion-input>
+              <ion-input [(ngModel)]="docJug.data.Pase" type="number" value="Disabled" disabled></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item style="text-align:right;">
               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Físico:</ion-label>
-              <ion-input [(ngModel)]="docJug.data.Fisico" ></ion-input>
+              <ion-input [(ngModel)]="docJug.data.Fisico" type="number" value="Disabled" disabled></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item style="text-align:right;">
               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Defensa:</ion-label>
-              <ion-input [(ngModel)]="docJug.data.Defensa"></ion-input>
+              <ion-input [(ngModel)]="docJug.data.Defensa" type="number" value="Disabled" disabled></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item style="text-align:left;"> 
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Pierna Mala:</ion-label>
+              <ion-select [(ngModel)]="docJug.data.PMala" value="Disabled" disabled>
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item style="text-align:left;">
+              <ion-label> <ion-icon ios="ios-star" md="md-star"></ion-icon>Skills:</ion-label>
+              <ion-select [(ngModel)]="docJug.data.Skills" value="Disabled" disabled>
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+              </ion-select>
+            </ion-item>
+         </ion-col>
+         <ion-col *ngIf = "isLogged == true" >
+          <ion-title>
+             <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Datos Generales</h1>
+            </ion-title>
+            <ion-item >
+              <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Url del perfil:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.URL"></ion-input>
+              <ion-button (click)="openSystem()">Abrir navegador</ion-button>
+            </ion-item>
+            <ion-item >
+              <ion-label><ion-avatar *ngIf="docJug.data.Imagen !=none" slot="end"><img width=20% [src]="docJug.data.Imagen"></ion-avatar>Imagen:</ion-label>
+              <ion-button (click)="uploadImagePicker()" >Importar...</ion-button>
+              <ion-button (click)="deleteFile()">Borrar...</ion-button>
+            </ion-item>
+             <ion-item style="text-align:right;">
+               <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Nombre" type="text"></ion-input>
+             </ion-item>
+             <ion-item style="text-align:right;">
+               <ion-label><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Apellidos:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Apellidos" type="text"></ion-input>
+             </ion-item>
+             <ion-item style="text-align:right;">
+               <ion-label><ion-icon ios="ios-stats" md="md-stats"></ion-icon>Media:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Media" type="number" min="40" max="99"></ion-input>
+             </ion-item>
+             <ion-item style="text-align:left;">
+              <ion-label><ion-icon ios="ios-medal" md="md-medal"></ion-icon>Posición:</ion-label>
+              <ion-select [(ngModel)]="docJug.data.Posicion">
+                <ion-select-option value="POR">POR</ion-select-option>
+                <ion-select-option value="DFC">DFC</ion-select-option>
+                <ion-select-option value="LI">LI</ion-select-option>
+                <ion-select-option value="LD">LD</ion-select-option>
+                <ion-select-option value="MCD">MCD</ion-select-option>
+                <ion-select-option value="MCO">MCO</ion-select-option>
+                <ion-select-option value="MD">MD</ion-select-option>
+                <ion-select-option value="MI">MI</ion-select-option>
+                <ion-select-option value="SD">SD</ion-select-option>
+                <ion-select-option value="DC">DC</ion-select-option>
+                <ion-select-option value="EI">EI</ion-select-option>
+                <ion-select-option value="ED">ED</ion-select-option>
+              </ion-select>
+            </ion-item>
+             <ion-item style="text-align:right;">
+               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Altura:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Altura" type="number"></ion-input>
+             </ion-item>
+             <ion-item style="text-align:left;">
+               <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>Nacimiento:</ion-label>
+               <ion-datetime displayFormat="DD MM YY" placeholder="Seleccionar fecha..." [(ngModel)]="docJug.data.FNac" ></ion-datetime>
+             </ion-item> 
+             <ion-title style="text-align: center;">
+                <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Stats Específicas</h1>
+               </ion-title>
+             <ion-item style="text-align:right;">
+               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>  Velocidad:</ion-label>
+               <ion-input [(ngModel)]="docJug.data.Velocidad" type="number" min="0" max="99"></ion-input>
+             </ion-item>
+             <ion-item style="text-align:right;">
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Regate:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Regate" type="number" min="0" max="99"></ion-input>
+            </ion-item>
+            <ion-item style="text-align:right;">
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Tiro:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Tiro" type="number" min="0" max="99"></ion-input>
+            </ion-item>
+            <ion-item style="text-align:right;">
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Pase:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Pase" type="number" min="0" max="99"></ion-input>
+            </ion-item>
+            <ion-item style="text-align:right;">
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Físico:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Fisico" type="number" min="0" max="99"></ion-input>
+            </ion-item>
+            <ion-item style="text-align:right;">
+              <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Defensa:</ion-label>
+              <ion-input [(ngModel)]="docJug.data.Defensa" type="number" min="0" max="99"></ion-input>
+            </ion-item>
+            <ion-item style="text-align:left;">
               <ion-label> <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>Pierna Mala:</ion-label>
               <ion-select [(ngModel)]="docJug.data.PMala" >
                 <ion-select-option value="1">1</ion-select-option>
@@ -84,7 +201,7 @@
                 <ion-select-option value="5">5</ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-item>
+            <ion-item style="text-align:left;">
               <ion-label> <ion-icon ios="ios-star" md="md-star"></ion-icon>Skills:</ion-label>
               <ion-select [(ngModel)]="docJug.data.Skills" >
                 <ion-select-option value="1">1</ion-select-option>
@@ -95,11 +212,17 @@
               </ion-select>
             </ion-item>
          </ion-col>
+         <ion-fab *ngIf = "nuevo == false " vertical="bottom" horizontal="end" slot="fixed" >
+          <ion-fab-button (click)="regularShare()" color="light">  
+            <ion-icon  name="share"></ion-icon>  
+          </ion-fab-button>
+        </ion-fab>  
   </ion-content>
 
   <ion-footer>
       <ion-toolbar>
-        <div *ngIf = "nuevo == false">
+        <div *ngIf = "isLogged == true ">
+        <div *ngIf = "nuevo == false ">
         <ion-buttons>
           <ion-button style="width: 100%;"(click)="navigateToInicio()">
             <ion-icon slot="icon-only" name="home"></ion-icon>
@@ -112,13 +235,21 @@
               </ion-button>
         </ion-buttons>
         </div>
-        <div *ngIf = "nuevo == true">
+      </div>
+        <div *ngIf = "nuevo == true ">
             <ion-buttons>
               <ion-button style="width: 100%;"(click)="navigateToInicio()">
                 <ion-icon slot="icon-only" name="home"></ion-icon>
               </ion-button>
               <ion-button style="width: 100%;" (click)="clicBotonInsertar(navigateToInicio())">
                 <ion-icon slot="icon-only" name="save"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+          <div *ngIf = "isLogged == false ">
+            <ion-buttons>
+              <ion-button style="width: 100%;"(click)="navigateToInicio()">
+                <ion-icon slot="icon-only" name="home"></ion-icon>
               </ion-button>
             </ion-buttons>
           </div>

@@ -1,28 +1,32 @@
-@media (max-width: 720px) {
-  ion-fab {
-    --ion-fab-vertical: "bottom";
-  }
-  ion-list {
-    text-align: left;
+@media (max-height: 720px) {
+  ion-header {
+    --ion-background-color: #bde;
   }
   ion-item {
-    --ion-background-color: #838383;
-    text-align: center;
+    --ion-background-color: #123749;
     color: #fff;
   }
   ion-content {
-    --ion-background-color: #8ae4c6;
+    --ion-background-color: #1d8bbe;
   }
   ion-card-content {
-    background-color: #004b69;
-    color: #fff;
+    font-family: Verdana;
+    background-color: #fff;
   }
-  #barra {
-    font-size: 15px;
+  ion-title {
+    font-family: "Bahnschrift";
+    size: 90px;
+    color: #000;
+    text-align: center;
   }
-  #titulo {
-    --ion-font-size: 25px;
-    background-color: #8ae4c6;
+  ion-button {
+    font-family: "Bahnschrift";
+    size: 90px;
+    --ion-color: #000;
+    text-align: center;
+  }
+  #imagen {
+    width: auto;
   }
   ion-title {
     --ion-background-color: #fff;

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { FirestoreService } from '../firestore.service';
 import { Datos } from '../datos';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +15,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class HomePage {
 
+  userEmail: String = "";
+  userUID: String = "";
+  isLogged: boolean;
+
   arrayColeccionJug: any = [{
     id: null,
     data: {} as Datos
@@ -18,13 +26,37 @@ export class HomePage {
    
   editarJug: Datos;  
   idJugSelec: string;
-
-  constructor(private firestoreService: FirestoreService,private router:Router,private angularFirestore: AngularFirestore) {
+  pickupLocation: string;
+  constructor(public loadingCtrl: LoadingController,private authService: AuthService,public afAuth: AngularFireAuth,private firestoreService: FirestoreService,private router:Router,private angularFirestore: AngularFirestore,private route:ActivatedRoute) {
+    this.route.queryParams.subscribe(params =>{
+      if(this.router.getCurrentNavigation().extras.state){
+        this.pickupLocation = this.router.getCurrentNavigation().extras.state.pickupLocation;
+      }
+    });
     // Crear una tarea vacía
     this.editarJug = {} as Datos;
     this.obtenerListaJugadores();
     
   } 
+  ionViewDidEnter() {
+    this.isLogged = false;
+    this.afAuth.user.subscribe(user => {
+      if(user){
+        this.userEmail = user.email;
+        this.userUID = user.uid;
+        this.isLogged = true;
+      }
+    })
+  }
+  logout(){
+    this.authService.doLogout()
+    .then(res => {
+      this.userEmail = "";
+      this.userUID = "";
+      this.isLogged = false;
+      console.log(this.userEmail);
+    }, err => console.log(err));
+  }
     obtenerListaJugadores(){
       this.firestoreService.consultar("datos").subscribe((resultadoConsultaJug) => {
         this.arrayColeccionJug = [];
@@ -59,6 +91,9 @@ export class HomePage {
     }
     navigateToInicio() {
       this.router.navigate(["/home"]);
+    }
+    navigateToLogin() {
+      this.router.navigate(["/login"]);
     }
     navigateToSearch(){
       console.log("search")
